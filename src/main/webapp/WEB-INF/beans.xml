@@ -28,8 +28,33 @@
     <bean id="calcService" class="com.rsotar.swagger.CalcServiceImpl" />
 
     <!-- Swagger API listing resource -->
+    <bean id="swaggerResourceJSON"
+          class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON" />
 
     <!-- Swagger writers -->
+    <bean id="resourceWriter"
+          class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider" />
+    <bean id="apiWriter"
+          class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider" />
 
+    <jaxrs:server id="swagger" address="/sw">
+        <jaxrs:serviceBeans>
+            <ref bean="swaggerResourceJSON" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="resourceWriter" />
+            <ref bean="apiWriter" />
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
+        <property name="resourcePackage" value="com.rsotar.swagger" />
+        <property name="version" value="1.0" />
+        <property name="basePath" value="http://localhost:8095/SwaggerApiRestV1/rest" />
+        <property name="title" value="SwaggerUI, Spring and Apache CXF" />
+        <property name="description" value="SwaggerUI,Spring and Apache CXF Integration Sample." />
+        <property name="contact" value="rsotar@gmail.com" />
+        <property name="scan" value="true" />
+    </bean>
 
 </beans>

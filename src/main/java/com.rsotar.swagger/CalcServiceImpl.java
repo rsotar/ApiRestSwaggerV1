@@ -1,6 +1,5 @@
 package com.rsotar.swagger;
 
-import javax.ws.rs.PathParam;
 
 public class CalcServiceImpl implements CalcService{
 
@@ -10,7 +9,7 @@ public class CalcServiceImpl implements CalcService{
     }
 
     @Override
-    public int subOperation(@PathParam("subNum1") int subNum1, @PathParam("subNum2") int subNum2) {
+    public int subOperation(int subNum1, int subNum2) {
         return (subNum1 - subNum2);
     }
 }
